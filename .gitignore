@@ -13,3 +13,6 @@ build
 dist
 env
 coverage*
+.venv/
+.pytest_cache/
+real-post.json

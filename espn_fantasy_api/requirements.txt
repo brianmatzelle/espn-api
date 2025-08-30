@@ -1,0 +1,4 @@
+# ESPN Fantasy Football API - Requirements
+# Minimal dependencies for reverse-engineered ESPN API
+
+requests>=2.25.0
