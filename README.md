@@ -9,15 +9,28 @@ Please feel free to make suggestions, bug reports, and pull request for features
 This package was inspired and based off of [rbarton65/espnff](https://github.com/rbarton65/espnff).
 
 ## Installing
-With Git:
+
+### From PyPI (Recommended)
+```bash
+pip install espn_api
 ```
+
+### For Development
+This project uses [uv](https://docs.astral.sh/uv/) for modern Python package management.
+
+**Prerequisites:** Install [uv](https://docs.astral.sh/uv/getting-started/installation/)
+
+```bash
 git clone https://github.com/cwendt94/espn-api
 cd espn-api
-python3 setup.py install
+uv sync --dev  # Install all dependencies including dev tools
 ```
-With pip:
-```
-pip install espn_api
+
+**Alternative with pip:**
+```bash
+git clone https://github.com/cwendt94/espn-api
+cd espn-api
+pip install -e ".[dev]"
 ```
 
 ## Usage
@@ -36,9 +49,38 @@ league = League(league_id=222, year=2019)
 ```
 
 ### Run Tests
+
+**With uv (Recommended for development):**
+```bash
+uv run pytest  # Run all tests with coverage
+uv run pytest tests/espn_requests/  # Run specific test directory
+uv run pytest -v  # Verbose output
 ```
-python3 setup.py nosetests
+
+**With pip:**
+```bash
+pytest  # Run all tests with coverage
 ```
+
+### Development Workflow (with uv)
+
+```bash
+# Add a new dependency
+uv add requests
+
+# Add a development dependency
+uv add --dev pytest-mock
+
+# Run the package
+uv run python -c "import espn_api; print(espn_api.__version__)"
+
+# Build the package
+uv build
+
+# Update dependencies
+uv lock --upgrade
+```
+
 ## [Discussions](https://github.com/cwendt94/espn-api/discussions) (new)
 If you have any questions about the package, ESPN API data, or want to talk about a feature please start a [discussion](https://github.com/cwendt94/espn-api/discussions)! 
 

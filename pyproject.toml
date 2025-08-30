@@ -1,3 +1,49 @@
 [build-system]
-requires = ["setuptools"]
-build-backend = "setuptools.build_meta"
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "espn_api"
+version = "0.45.1"
+description = "ESPN API"
+readme = "README.md"
+authors = [
+    {name = "Christian Wendt"}
+]
+license = {text = "MIT"}
+requires-python = ">=3.8"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+]
+dependencies = [
+    "requests>=2.0.0,<3.0.0",
+    "urllib3<=2.2.3",
+]
+
+[project.urls]
+Homepage = "https://github.com/cwendt94/espn-api"
+Repository = "https://github.com/cwendt94/espn-api"
+
+[project.optional-dependencies]
+dev = [
+    "pytest",
+    "pytest-cov",
+    "requests_mock",
+    "coverage",
+]
+
+[tool.hatch.build.targets.wheel]
+packages = ["espn_api"]
+
+[tool.hatch.version]
+path = "espn_api/_version.py"
+
+# Test configuration using pytest
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+python_files = ["test_*.py"]
+python_classes = ["Test*"]
+python_functions = ["test_*"]
+addopts = "--cov=espn_api --cov-report=xml --cov-report=term-missing"
